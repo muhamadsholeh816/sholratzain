@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="id">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260818-03-5e01b02","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eksplorasi Bilangan Berpangkat dan Bentuk Akar</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --bg-warm: #fef7ed;
+            --bg-cool: #eef2ff;
+            --text-dark: #1e1b4b;
+            --text-mid: #4338ca;
+        }
+        body { font-family: 'DM Sans', sans-serif; }
+        h1,h2,h3,.heading-font { font-family: 'Fraunces', serif; }
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+        .pulse-glow { animation: pulseGlow 2s infinite; }
+        @keyframes pulseGlow { 0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,0.3)} 50%{box-shadow:0 0 20px 6px rgba(99,102,241,0.15)} }
+        .math-box { background: linear-gradient(135deg, #eef2ff, #faf5ff); border: 2px solid #c7d2fe; border-radius: 12px; padding: 1rem; }
+        .hint-box { background: linear-gradient(135deg, #fef3c7, #fffbeb); border-left: 4px solid #f59e0b; }
+        .step-box { background: #f0fdf4; border-left: 4px solid #10b981; }
+        .canvas-viz { background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 12px; }
+        .nav-item { transition: all 0.2s; }
+        .nav-item:hover, .nav-item.active { background: rgba(99,102,241,0.1); color: var(--primary-dark); }
+        .nav-item.active { border-right: 3px solid var(--primary); font-weight: 600; }
+        .score-badge { display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:0.75rem;font-weight:600; }
+        .btn-primary { background: var(--primary); color: white; padding: 0.5rem 1.25rem; border-radius: 8px; font-weight: 600; transition: all 0.2s; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-secondary { background: white; color: var(--primary); border: 2px solid var(--primary); padding: 0.5rem 1.25rem; border-radius: 8px; font-weight: 600; transition: all 0.2s; }
+        .btn-secondary:hover { background: var(--bg-cool); }
+        .progress-ring { transition: stroke-dashoffset 0.6s ease; }
+        input[type="number"],input[type="text"],textarea { border: 2px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.75rem; transition: border-color 0.2s; }
+        input:focus,textarea:focus { border-color: var(--primary); outline: none; }
+        .correct-feedback { background: #dcfce7; border: 2px solid #86efac; color: #166534; }
+        .wrong-feedback { background: #fee2e2; border: 2px solid #fca5a5; color: #991b1b; }
+    </style>
+  <script src="/_sdk/eba18683f23e5798.resizing_sdk.js" type="text/javascript" integrity="sha512-E0UWUllhwPXaNJtjyTKXWKrIE+FruPfFpO4mRmMDP2LI+U9bOizy5npCq6xx/JyWcvSK7D3TFf2wFR2Mha9kbA=="></script>
+ <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script></head>
+ <body data-template-id="__page-root" class="min-h-screen w-full"><!-- WELCOME SCREEN -->
+  <div id="welcome-screen" class="w-full min-h-screen flex items-center justify-center p-4">
+   <div class="max-w-lg w-full text-center fade-in">
+    <div class="mb-6"><img data-template-id="hero-image" class="canva-image w-full h-48 object-cover rounded-2xl shadow-lg" loading="lazy">
+    </div>
+    <h1 data-template-id="app-title" class="canva-text text-3xl md:text-4xl font-bold mb-3"></h1>
+    <p data-template-id="app-subtitle" class="canva-text text-lg mb-8 opacity-80"></p>
+    <div class="mb-6"><label for="student-name-input" class="block text-sm font-medium mb-2 text-left" data-template-id="name-label"></label> <input type="text" id="student-name-input" class="w-full text-lg" placeholder="Masukkan namamu...">
+    </div><button onclick="startApp()" class="btn-primary text-lg px-8 py-3 pulse-glow"> <span data-template-id="start-btn" class="canva-text"></span> 🚀 </button>
+   </div>
+  </div><!-- MAIN APP -->
+  <div id="main-app" class="w-full hidden"><!-- Top Bar -->
+   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-indigo-100 px-4 py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+     <div class="flex items-center gap-3"><button onclick="toggleSidebar()" class="lg:hidden p-2 rounded-lg hover:bg-indigo-50"> <i data-lucide="menu" style="width:24px;height:24px;color:var(--primary)"></i> </button>
+      <h2 class="heading-font text-lg font-bold text-indigo-900" id="current-section-title">Menu Utama</h2>
+     </div>
+     <div class="flex items-center gap-3"><span id="student-display-name" class="text-sm font-medium text-indigo-700"></span>
+      <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center"><i data-lucide="user" style="width:18px;height:18px;color:var(--primary)"></i>
+      </div>
+     </div>
+    </div>
+   </header>
+   <div class="flex"><!-- Sidebar -->
+    <aside id="sidebar" class="fixed lg:sticky top-[57px] left-0 z-40 w-72 h-[calc(100vh-57px)] bg-white border-r border-indigo-100 overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform">
+     <nav class="p-4 space-y-1"><button onclick="navigate('dashboard')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 active" data-nav="dashboard"> <i data-lucide="layout-dashboard" style="width:18px;height:18px"></i> <span class="text-sm">Dashboard</span> </button>
+      <div class="pt-2 pb-1 px-4 text-xs font-bold text-indigo-400 uppercase tracking-wider">
+       Tujuan Pembelajaran
+      </div><button onclick="navigate('tp1')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3" data-nav="tp1"> <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">1</span> <span class="text-sm">Bilangan Berpangkat</span> <span id="tp1-badge" class="score-badge bg-gray-100 text-gray-500 ml-auto">0%</span> </button> <button onclick="navigate('tp2')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3" data-nav="tp2"> <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">2</span> <span class="text-sm">Sifat-sifat Perpangkatan</span> <span id="tp2-badge" class="score-badge bg-gray-100 text-gray-500 ml-auto">0%</span> </button> <button onclick="navigate('tp3')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3" data-nav="tp3"> <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">3</span> <span class="text-sm">Operasi Perpangkatan</span> <span id="tp3-badge" class="score-badge bg-gray-100 text-gray-500 ml-auto">0%</span> </button> <button onclick="navigate('tp4')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3" data-nav="tp4"> <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">4</span> <span class="text-sm">Bentuk Akar</span> <span id="tp4-badge" class="score-badge bg-gray-100 text-gray-500 ml-auto">0%</span> </button> <button onclick="navigate('tp5')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3" data-nav="tp5"> <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">5</span> <span class="text-sm">Operasi Bentuk Akar</span> <span id="tp5-badge" class="score-badge bg-gray-100 text-gray-500 ml-auto">0%</span> </button> <button onclick="navigate('tp6')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3" data-nav="tp6"> <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">6</span> <span class="text-sm">Rasionalisasi Penyebut</span> <span id="tp6-badge" class="score-badge bg-gray-100 text-gray-500 ml-auto">0%</span> </button>
+      <div class="pt-2 pb-1 px-4 text-xs font-bold text-indigo-400 uppercase tracking-wider">
+       Lainnya
+      </div><button onclick="navigate('challenge')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3" data-nav="challenge"> <i data-lucide="trophy" style="width:18px;height:18px"></i> <span class="text-sm">Tantangan Akhir</span> </button> <button onclick="navigate('remedial')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3" data-nav="remedial"> <i data-lucide="refresh-cw" style="width:18px;height:18px"></i> <span class="text-sm">Remedial</span> </button> <button onclick="navigate('enrichment')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3" data-nav="enrichment"> <i data-lucide="star" style="width:18px;height:18px"></i> <span class="text-sm">Pengayaan</span> </button> <button onclick="navigate('reflection')" class="nav-item w-full text-left px-4 py-3 rounded-lg flex items-center gap-3" data-nav="reflection"> <i data-lucide="book-open" style="width:18px;height:18px"></i> <span class="text-sm">Refleksi</span> </button>
+     </nav>
+    </aside><!-- Overlay for mobile sidebar -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/30 z-30 hidden lg:hidden" onclick="toggleSidebar()"></div><!-- Main Content -->
+    <main class="flex-1 min-h-screen p-4 md:p-8 max-w-5xl mx-auto w-full"><!-- DASHBOARD -->
+     <section id="page-dashboard" class="fade-in">
+      <div class="mb-8">
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900 mb-2">Selamat Datang, <span id="dash-name"></span>! 👋</h1>
+       <p class="text-indigo-600">Mari jelajahi dunia bilangan berpangkat dan bentuk akar.</p>
+      </div><!-- Progress Overview -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
+       <div class="bg-white rounded-xl p-4 shadow-sm border border-indigo-50 text-center">
+        <div class="text-2xl font-bold text-indigo-600" id="dash-tp1">
+         0%
+        </div>
+        <div class="text-xs text-gray-500 mt-1">
+         TP 1
+        </div>
+       </div>
+       <div class="bg-white rounded-xl p-4 shadow-sm border border-indigo-50 text-center">
+        <div class="text-2xl font-bold text-indigo-600" id="dash-tp2">
+         0%
+        </div>
+        <div class="text-xs text-gray-500 mt-1">
+         TP 2
+        </div>
+       </div>
+       <div class="bg-white rounded-xl p-4 shadow-sm border border-indigo-50 text-center">
+        <div class="text-2xl font-bold text-indigo-600" id="dash-tp3">
+         0%
+        </div>
+        <div class="text-xs text-gray-500 mt-1">
+         TP 3
+        </div>
+       </div>
+       <div class="bg-white rounded-xl p-4 shadow-sm border border-indigo-50 text-center">
+        <div class="text-2xl font-bold text-indigo-600" id="dash-tp4">
+         0%
+        </div>
+        <div class="text-xs text-gray-500 mt-1">
+         TP 4
+        </div>
+       </div>
+       <div class="bg-white rounded-xl p-4 shadow-sm border border-indigo-50 text-center">
+        <div class="text-2xl font-bold text-indigo-600" id="dash-tp5">
+         0%
+        </div>
+        <div class="text-xs text-gray-500 mt-1">
+         TP 5
+        </div>
+       </div>
+       <div class="bg-white rounded-xl p-4 shadow-sm border border-indigo-50 text-center">
+        <div class="text-2xl font-bold text-indigo-600" id="dash-tp6">
+         0%
+        </div>
+        <div class="text-xs text-gray-500 mt-1">
+         TP 6
+        </div>
+       </div>
+      </div><!-- Total Progress -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-8">
+       <div class="flex items-center justify-between mb-3"><span class="font-semibold text-indigo-900">Progres Keseluruhan</span> <span class="text-lg font-bold text-indigo-600" id="dash-total">0%</span>
+       </div>
+       <div class="w-full h-4 bg-indigo-100 rounded-full overflow-hidden">
+        <div id="dash-progress-bar" class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500" style="width:0%"></div>
+       </div>
+      </div><!-- Quick Start Cards -->
+      <h3 class="heading-font text-xl font-bold text-indigo-900 mb-4">Mulai Belajar</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"><button onclick="navigate('tp1')" class="text-left bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-5 border border-indigo-100 hover:shadow-md transition-all">
+        <div class="text-2xl mb-2">
+         🔢
+        </div><h4 class="font-bold text-indigo-900">Bilangan Berpangkat</h4><p class="text-sm text-indigo-600 mt-1">Pahami perkalian berulang</p></button> <button onclick="navigate('tp2')" class="text-left bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-5 border border-amber-100 hover:shadow-md transition-all">
+        <div class="text-2xl mb-2">
+         ⚡
+        </div><h4 class="font-bold text-indigo-900">Sifat Perpangkatan</h4><p class="text-sm text-indigo-600 mt-1">Temukan pola dan aturan</p></button> <button onclick="navigate('tp4')" class="text-left bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-5 border border-emerald-100 hover:shadow-md transition-all">
+        <div class="text-2xl mb-2">
+         √
+        </div><h4 class="font-bold text-indigo-900">Bentuk Akar</h4><p class="text-sm text-indigo-600 mt-1">Visualisasi dengan geometri</p></button>
+      </div>
+     </section><!-- TP1: BILANGAN BERPANGKAT -->
+     <section id="page-tp1" class="hidden fade-in">
+      <div class="mb-6"><span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold mb-2">Tujuan Pembelajaran 1</span>
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900">Memahami Bilangan Berpangkat</h1>
+       <p class="text-indigo-600 mt-2">Bilangan berpangkat adalah cara singkat menulis perkalian berulang.</p>
+      </div><!-- Context -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🌍 Konteks Nyata</h3>
+       <p class="text-gray-700 mb-4">Bayangkan bakteri yang membelah diri setiap jam. 1 bakteri menjadi 2, lalu 4, lalu 8... Ini adalah perpangkatan!</p>
+       <div class="grid grid-cols-4 gap-2 text-center">
+        <div class="bg-indigo-50 rounded-lg p-3">
+         <div class="text-2xl">
+          🦠
+         </div>
+         <div class="text-xs mt-1">
+          Jam 0: 2⁰=1
+         </div>
+        </div>
+        <div class="bg-indigo-50 rounded-lg p-3">
+         <div class="text-2xl">
+          🦠🦠
+         </div>
+         <div class="text-xs mt-1">
+          Jam 1: 2¹=2
+         </div>
+        </div>
+        <div class="bg-indigo-50 rounded-lg p-3">
+         <div class="text-xl">
+          🦠🦠🦠🦠
+         </div>
+         <div class="text-xs mt-1">
+          Jam 2: 2²=4
+         </div>
+        </div>
+        <div class="bg-indigo-50 rounded-lg p-3">
+         <div class="text-sm">
+          🦠×8
+         </div>
+         <div class="text-xs mt-1">
+          Jam 3: 2³=8
+         </div>
+        </div>
+       </div>
+      </div><!-- Interactive Exploration -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🔬 Eksplorasi Interaktif</h3>
+       <p class="text-gray-600 mb-4">Ubah nilai basis dan eksponen, lalu amati hasilnya!</p>
+       <div class="flex flex-wrap items-center gap-4 mb-4">
+        <div><label class="text-sm font-medium text-gray-600 block mb-1">Basis (a)</label> <input type="number" id="tp1-base" value="2" min="1" max="20" class="w-20 text-center text-lg font-bold" oninput="updateTP1Viz()">
+        </div>
+        <div class="text-3xl font-bold text-indigo-400 pt-5">
+         ^
+        </div>
+        <div><label class="text-sm font-medium text-gray-600 block mb-1">Eksponen (n)</label> <input type="number" id="tp1-exp" value="3" min="0" max="10" class="w-20 text-center text-lg font-bold" oninput="updateTP1Viz()">
+        </div>
+       </div>
+       <div class="math-box mb-4">
+        <div class="text-center">
+         <div class="text-sm text-gray-500 mb-1">
+          Bentuk Berpangkat
+         </div>
+         <div class="text-3xl font-bold text-indigo-700" id="tp1-power-form">
+          2³
+         </div>
+        </div>
+       </div>
+       <div class="math-box mb-4">
+        <div class="text-center">
+         <div class="text-sm text-gray-500 mb-1">
+          Perkalian Berulang
+         </div>
+         <div class="text-xl font-bold text-purple-700" id="tp1-expanded">
+          2 × 2 × 2
+         </div>
+        </div>
+       </div>
+       <div class="math-box">
+        <div class="text-center">
+         <div class="text-sm text-gray-500 mb-1">
+          Hasil
+         </div>
+         <div class="text-3xl font-bold text-emerald-600" id="tp1-result">
+          8
+         </div>
+        </div>
+       </div>
+      </div><!-- Visual: Cubes -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">📦 Visualisasi dengan Kubus</h3>
+       <p class="text-gray-600 mb-3">Lihat bagaimana 2³ = 8 bisa divisualisasikan sebagai kubus 2×2×2</p>
+       <div class="canvas-viz p-4 flex justify-center">
+        <canvas id="tp1-canvas" width="300" height="200"></canvas>
+       </div>
+      </div><!-- Step-by-step Example -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">📝 Contoh Bertahap</h3>
+       <p class="font-medium text-gray-800 mb-3">Soal: Tuliskan 5⁴ dalam bentuk perkalian berulang dan hitung hasilnya.</p>
+       <div id="tp1-steps" class="space-y-3">
+        <div class="step-box p-3 rounded-lg"><strong>Langkah 1:</strong> Identifikasi basis = 5, eksponen = 4
+        </div>
+        <div class="step-box p-3 rounded-lg hidden" data-step="1"><strong>Langkah 2:</strong> Tulis perkalian berulang: 5 × 5 × 5 × 5
+        </div>
+        <div class="step-box p-3 rounded-lg hidden" data-step="2"><strong>Langkah 3:</strong> Hitung: 5×5=25, 25×5=125, 125×5=625
+        </div>
+        <div class="step-box p-3 rounded-lg hidden" data-step="3"><strong>Langkah 4:</strong> Jadi 5⁴ = 625 ✓
+        </div>
+       </div><button onclick="showNextStep('tp1-steps')" class="btn-secondary mt-4 text-sm">Lihat Langkah Berikutnya →</button>
+      </div><!-- Quiz -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🎯 Kuis TP1</h3>
+       <div id="tp1-quiz-area"></div><button onclick="startQuiz('tp1')" class="btn-primary mt-2" id="tp1-quiz-btn">Mulai Kuis</button>
+      </div>
+     </section><!-- TP2: SIFAT-SIFAT PERPANGKATAN -->
+     <section id="page-tp2" class="hidden fade-in">
+      <div class="mb-6"><span class="inline-block px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-bold mb-2">Tujuan Pembelajaran 2</span>
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900">Sifat-sifat Bilangan Berpangkat</h1>
+       <p class="text-indigo-600 mt-2">Temukan pola dan aturan dari bilangan berpangkat!</p>
+      </div><!-- Pattern Discovery -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🔍 Temukan Polanya!</h3>
+       <p class="text-gray-600 mb-4">Perhatikan contoh-contoh berikut, lalu temukan aturannya:</p><!-- Property selector -->
+       <div class="flex flex-wrap gap-2 mb-4"><button onclick="showProperty(0)" class="px-3 py-1.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-700 hover:bg-indigo-200 transition" id="prop-btn-0">Perkalian</button> <button onclick="showProperty(1)" class="px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition" id="prop-btn-1">Pembagian</button> <button onclick="showProperty(2)" class="px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition" id="prop-btn-2">Pangkat²</button> <button onclick="showProperty(3)" class="px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition" id="prop-btn-3">Pangkat 0</button> <button onclick="showProperty(4)" class="px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition" id="prop-btn-4">Pangkat (−)</button>
+       </div>
+       <div id="property-display" class="math-box">
+        <div class="text-center mb-3 text-sm text-gray-500">
+         Perkalian Bilangan Berpangkat
+        </div>
+        <div class="space-y-2 text-center font-mono text-lg">
+         <div>
+          2² × 2³ = (2×2) × (2×2×2) = 2⁵ → pangkat: 2+3=5
+         </div>
+         <div>
+          3¹ × 3⁴ = 3 × (3×3×3×3) = 3⁵ → pangkat: 1+4=5
+         </div>
+         <div>
+          5³ × 5² = (5×5×5) × (5×5) = 5⁵ → pangkat: 3+2=5
+         </div>
+        </div>
+        <div class="mt-4 p-3 bg-indigo-50 rounded-lg text-center"><strong class="text-indigo-800">Pola yang ditemukan:</strong>
+         <div class="text-xl font-bold text-indigo-700 mt-1">
+          aᵐ × aⁿ = aᵐ⁺ⁿ
+         </div>
+        </div>
+       </div>
+      </div><!-- Interactive Simulator -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🧪 Simulator Sifat</h3>
+       <p class="text-gray-600 mb-4">Ubah nilai dan buktikan sendiri sifat perpangkatan!</p>
+       <div class="flex flex-wrap items-end gap-3 mb-4">
+        <div><label class="text-xs font-medium text-gray-500 block mb-1">Basis</label> <input type="number" id="tp2-base" value="2" min="2" max="10" class="w-16 text-center font-bold" oninput="updateTP2Sim()">
+        </div>
+        <div><label class="text-xs font-medium text-gray-500 block mb-1">m</label> <input type="number" id="tp2-m" value="2" min="0" max="8" class="w-16 text-center font-bold" oninput="updateTP2Sim()">
+        </div>
+        <div><label class="text-xs font-medium text-gray-500 block mb-1">n</label> <input type="number" id="tp2-n" value="3" min="0" max="8" class="w-16 text-center font-bold" oninput="updateTP2Sim()">
+        </div>
+       </div>
+       <div id="tp2-sim-result" class="math-box text-center font-mono"></div>
+      </div><!-- Quiz -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🎯 Kuis TP2</h3>
+       <div id="tp2-quiz-area"></div><button onclick="startQuiz('tp2')" class="btn-primary mt-2" id="tp2-quiz-btn">Mulai Kuis</button>
+      </div>
+     </section><!-- TP3: OPERASI PERPANGKATAN -->
+     <section id="page-tp3" class="hidden fade-in">
+      <div class="mb-6"><span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold mb-2">Tujuan Pembelajaran 3</span>
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900">Operasi Bilangan Berpangkat</h1>
+       <p class="text-indigo-600 mt-2">Terapkan sifat-sifat perpangkatan dalam menyelesaikan soal!</p>
+      </div><!-- Leveled Practice -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">📊 Latihan Bertingkat</h3>
+       <div class="flex flex-wrap gap-2 mb-4"><button onclick="loadTP3Level(1)" class="px-4 py-2 rounded-lg text-sm font-medium bg-green-100 text-green-700" id="tp3-lvl1">Level 1: Dasar</button> <button onclick="loadTP3Level(2)" class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-600" id="tp3-lvl2">Level 2: Sifat</button> <button onclick="loadTP3Level(3)" class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-600" id="tp3-lvl3">Level 3: Campuran</button> <button onclick="loadTP3Level(4)" class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-600" id="tp3-lvl4">Level 4: Konteks</button>
+       </div>
+       <div id="tp3-practice-area" class="space-y-4"></div>
+      </div><!-- Quiz -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🎯 Kuis TP3</h3>
+       <div id="tp3-quiz-area"></div><button onclick="startQuiz('tp3')" class="btn-primary mt-2" id="tp3-quiz-btn">Mulai Kuis</button>
+      </div>
+     </section><!-- TP4: BENTUK AKAR -->
+     <section id="page-tp4" class="hidden fade-in">
+      <div class="mb-6"><span class="inline-block px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-bold mb-2">Tujuan Pembelajaran 4</span>
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900">Memahami Bentuk Akar</h1>
+       <p class="text-indigo-600 mt-2">Akar kuadrat dan hubungannya dengan geometri.</p>
+      </div><!-- Geometric Visualization -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">📐 Visualisasi Geometris</h3>
+       <p class="text-gray-600 mb-3">√A adalah panjang sisi persegi yang luasnya A.</p>
+       <div class="flex flex-wrap items-center gap-4 mb-4">
+        <div><label class="text-sm font-medium text-gray-600 block mb-1">Luas Persegi</label> <input type="number" id="tp4-area" value="25" min="1" max="200" class="w-24 text-center text-lg font-bold" oninput="updateTP4Viz()">
+        </div>
+       </div>
+       <div class="canvas-viz p-4 flex justify-center mb-4">
+        <canvas id="tp4-canvas" width="300" height="250"></canvas>
+       </div>
+       <div class="math-box text-center"><span class="text-gray-500">Panjang sisi = </span> <span class="text-2xl font-bold text-teal-700" id="tp4-result">√25 = 5</span>
+       </div>
+      </div><!-- Perfect vs Imperfect -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">✅ Akar Sempurna vs Tidak Sempurna</h3>
+       <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-green-50 rounded-lg p-4">
+         <h4 class="font-bold text-green-800 mb-2">Akar Sempurna</h4>
+         <div class="space-y-1 text-sm">
+          <div>
+           √1 = 1, √4 = 2, √9 = 3
+          </div>
+          <div>
+           √16 = 4, √25 = 5, √36 = 6
+          </div>
+          <div>
+           √49 = 7, √64 = 8, √81 = 9
+          </div>
+         </div>
+        </div>
+        <div class="bg-amber-50 rounded-lg p-4">
+         <h4 class="font-bold text-amber-800 mb-2">Akar Tidak Sempurna</h4>
+         <div class="space-y-1 text-sm">
+          <div>
+           √2 ≈ 1,414...
+          </div>
+          <div>
+           √3 ≈ 1,732...
+          </div>
+          <div>
+           √5 ≈ 2,236...
+          </div>
+         </div>
+         <p class="text-xs mt-2 text-amber-600">Hasilnya bilangan irasional!</p>
+        </div>
+       </div>
+      </div><!-- Simplification -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">📝 Menyederhanakan Bentuk Akar</h3>
+       <div id="tp4-simplify-steps" class="space-y-3">
+        <p class="font-medium">Contoh: Sederhanakan √72</p>
+        <div class="step-box p-3 rounded-lg"><strong>Langkah 1:</strong> Cari faktor kuadrat sempurna terbesar dari 72
+        </div>
+        <div class="step-box p-3 rounded-lg hidden" data-step="1"><strong>Langkah 2:</strong> 72 = 36 × 2 (36 adalah kuadrat sempurna)
+        </div>
+        <div class="step-box p-3 rounded-lg hidden" data-step="2"><strong>Langkah 3:</strong> √72 = √(36 × 2) = √36 × √2
+        </div>
+        <div class="step-box p-3 rounded-lg hidden" data-step="3"><strong>Langkah 4:</strong> = 6√2 ✓
+        </div>
+       </div><button onclick="showNextStep('tp4-simplify-steps')" class="btn-secondary mt-4 text-sm">Lihat Langkah Berikutnya →</button>
+      </div><!-- Quiz -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🎯 Kuis TP4</h3>
+       <div id="tp4-quiz-area"></div><button onclick="startQuiz('tp4')" class="btn-primary mt-2" id="tp4-quiz-btn">Mulai Kuis</button>
+      </div>
+     </section><!-- TP5: OPERASI BENTUK AKAR -->
+     <section id="page-tp5" class="hidden fade-in">
+      <div class="mb-6"><span class="inline-block px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-xs font-bold mb-2">Tujuan Pembelajaran 5</span>
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900">Operasi Bentuk Akar</h1>
+       <p class="text-indigo-600 mt-2">Penjumlahan, pengurangan, perkalian, dan pembagian bentuk akar.</p>
+      </div><!-- Operation Types -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">📚 Jenis Operasi</h3>
+       <div class="flex flex-wrap gap-2 mb-4"><button onclick="showTP5Op(0)" class="px-3 py-1.5 rounded-full text-sm font-medium bg-pink-100 text-pink-700" id="tp5-op-0">Penjumlahan</button> <button onclick="showTP5Op(1)" class="px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-600" id="tp5-op-1">Pengurangan</button> <button onclick="showTP5Op(2)" class="px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-600" id="tp5-op-2">Perkalian</button> <button onclick="showTP5Op(3)" class="px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-600" id="tp5-op-3">Pembagian</button>
+       </div>
+       <div id="tp5-op-display" class="math-box"></div>
+      </div><!-- Practice with hints -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">✏️ Latihan dengan Petunjuk</h3>
+       <div id="tp5-practice-area"></div><button onclick="loadTP5Practice()" class="btn-primary mt-2" id="tp5-practice-btn">Mulai Latihan</button>
+      </div><!-- Quiz -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🎯 Kuis TP5</h3>
+       <div id="tp5-quiz-area"></div><button onclick="startQuiz('tp5')" class="btn-primary mt-2" id="tp5-quiz-btn">Mulai Kuis</button>
+      </div>
+     </section><!-- TP6: RASIONALISASI PENYEBUT -->
+     <section id="page-tp6" class="hidden fade-in">
+      <div class="mb-6"><span class="inline-block px-3 py-1 bg-violet-100 text-violet-700 rounded-full text-xs font-bold mb-2">Tujuan Pembelajaran 6</span>
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900">Merasionalisasi Penyebut</h1>
+       <p class="text-indigo-600 mt-2">Mengubah bentuk akar di penyebut menjadi bentuk yang lebih sederhana.</p>
+      </div><!-- Why rationalize -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🤔 Mengapa Harus Dirasionalisasi?</h3>
+       <p class="text-gray-700 mb-3">Pecahan dengan penyebut bentuk akar sulit dihitung dan dibandingkan. Rasionalisasi membuat penyebut menjadi bilangan rasional tanpa mengubah nilai pecahan.</p>
+       <div class="math-box text-center">
+        <div class="text-lg">
+         1/√2 = 1/√2 × √2/√2 = √2/2
+        </div>
+        <div class="text-sm text-gray-500 mt-2">
+         Nilainya sama! Hanya bentuknya yang berubah.
+        </div>
+       </div>
+      </div><!-- Step by step -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">📝 Contoh Bertahap</h3>
+       <p class="font-medium mb-3">Rasionalisasi: 6/(√3)</p>
+       <div id="tp6-steps" class="space-y-3">
+        <div class="step-box p-3 rounded-lg"><strong>Langkah 1:</strong> Identifikasi penyebut: √3
+        </div>
+        <div class="step-box p-3 rounded-lg hidden" data-step="1"><strong>Langkah 2:</strong> Kalikan pembilang dan penyebut dengan √3
+        </div>
+        <div class="step-box p-3 rounded-lg hidden" data-step="2"><strong>Langkah 3:</strong> = (6×√3)/(√3×√3) = 6√3/3
+        </div>
+        <div class="step-box p-3 rounded-lg hidden" data-step="3"><strong>Langkah 4:</strong> Sederhanakan: = 2√3 ✓
+        </div>
+       </div><button onclick="showNextStep('tp6-steps')" class="btn-secondary mt-4 text-sm">Lihat Langkah Berikutnya →</button>
+      </div><!-- Conjugate example -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🔗 Bentuk Sekawan (Konjugat)</h3>
+       <p class="text-gray-600 mb-3">Untuk penyebut berbentuk a+√b, kalikan dengan sekawannya: a−√b</p>
+       <div class="math-box text-center space-y-2">
+        <div>
+         Sekawan dari (3+√2) adalah (3−√2)
+        </div>
+        <div>
+         (3+√2)(3−√2) = 9−2 = 7 ← penyebut jadi rasional!
+        </div>
+       </div>
+      </div><!-- Quiz -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🎯 Kuis TP6</h3>
+       <div id="tp6-quiz-area"></div><button onclick="startQuiz('tp6')" class="btn-primary mt-2" id="tp6-quiz-btn">Mulai Kuis</button>
+      </div>
+     </section><!-- CHALLENGE -->
+     <section id="page-challenge" class="hidden fade-in">
+      <div class="mb-6"><span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-bold mb-2">🏆 Tantangan Akhir</span>
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900">Tantangan Gabungan</h1>
+       <p class="text-indigo-600 mt-2">Gabungkan semua konsep untuk menyelesaikan tantangan ini!</p>
+      </div>
+      <div id="challenge-area" class="space-y-4"></div><button onclick="startChallenge()" class="btn-primary mt-4" id="challenge-btn">Mulai Tantangan</button>
+     </section><!-- REMEDIAL -->
+     <section id="page-remedial" class="hidden fade-in">
+      <div class="mb-6">
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900">🔄 Remedial</h1>
+       <p class="text-indigo-600 mt-2">Perkuat pemahamanmu pada konsep-konsep yang belum dikuasai.</p>
+      </div>
+      <div id="remedial-area" class="space-y-4">
+       <p class="text-gray-600">Bagian yang perlu dipelajari ulang akan ditampilkan berdasarkan skor kuismu.</p>
+      </div>
+     </section><!-- ENRICHMENT -->
+     <section id="page-enrichment" class="hidden fade-in">
+      <div class="mb-6">
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900">⭐ Pengayaan</h1>
+       <p class="text-indigo-600 mt-2">Tantangan ekstra untuk yang sudah menguasai konsep!</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">Bentuk Baku (Notasi Ilmiah)</h3>
+       <p class="text-gray-700 mb-3">Bilangan sangat besar atau sangat kecil ditulis dalam bentuk: a × 10ⁿ, dimana 1 ≤ a &lt; 10</p>
+       <div class="math-box text-center space-y-2">
+        <div>
+         Jarak Bumi-Matahari ≈ 150.000.000 km = 1,5 × 10⁸ km
+        </div>
+        <div>
+         Ukuran virus ≈ 0,0000001 m = 1 × 10⁻⁷ m
+        </div>
+       </div>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50">
+       <h3 class="heading-font text-lg font-bold text-indigo-900 mb-3">🧩 Soal HOTS</h3>
+       <div id="enrichment-problems" class="space-y-4">
+        <div class="p-4 bg-purple-50 rounded-lg">
+         <p class="font-medium">Jika 2ⁿ = 64 dan 3ᵐ = 81, tentukan nilai dari 2ⁿ × 3ᵐ ÷ 6²</p>
+         <div class="mt-3"><input type="text" id="enrich-ans-1" class="w-full" placeholder="Ketik jawabanmu..."> <button onclick="checkEnrichment(1)" class="btn-secondary mt-2 text-sm">Periksa</button>
+          <div id="enrich-fb-1" class="mt-2 text-sm hidden"></div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section><!-- REFLECTION -->
+     <section id="page-reflection" class="hidden fade-in">
+      <div class="mb-6">
+       <h1 class="heading-font text-2xl md:text-3xl font-bold text-indigo-900">📖 Refleksi Pembelajaran</h1>
+       <p class="text-indigo-600 mt-2">Renungkan apa yang sudah kamu pelajari.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-indigo-50 mb-6">
+       <div class="space-y-4">
+        <div><label class="font-medium text-gray-800 block mb-2">Apa konsep yang paling kamu pahami?</label> <textarea id="reflect-1" rows="2" class="w-full" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div><label class="font-medium text-gray-800 block mb-2">Apa yang masih sulit dipahami?</label> <textarea id="reflect-2" rows="2" class="w-full" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div><label class="font-medium text-gray-800 block mb-2">Bagaimana kamu bisa menerapkan konsep ini dalam kehidupan sehari-hari?</label> <textarea id="reflect-3" rows="2" class="w-full" placeholder="Tulis di sini..."></textarea>
+        </div><button onclick="saveReflection()" class="btn-primary" id="save-reflection-btn">Simpan Refleksi 💾</button>
+        <div id="reflect-feedback" class="hidden text-sm text-green-600 mt-2">
+         Refleksi tersimpan! ✓
+        </div>
+       </div>
+      </div>
+     </section>
+    </main>
+   </div>
+  </div>
+  <script src="/_sdk/a051f9537983733d.editing_sdk.js" integrity="sha512-IWn3eBHnVt7zQ0Rp79J72qSgJoLbskCA9lcfY4retf+5km4LjuhSHpvx+182KCHmEZ6EbJtWqVsybpV8Sd8PQQ=="></script>
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script>
+// ===== APP STATE =====
+let studentData = null;
+let allData = [];
+let currentPage = 'dashboard';
+const scores = { tp1:0, tp2:0, tp3:0, tp4:0, tp5:0, tp6:0 };
+
+// ===== DATA SDK =====
+const dataHandler = {
+    onDataChanged(data) {
+        allData = data;
+        if (data.length > 0) {
+            studentData = data[0];
+            scores.tp1 = studentData.tp1_score || 0;
+            scores.tp2 = studentData.tp2_score || 0;
+            scores.tp3 = studentData.tp3_score || 0;
+            scores.tp4 = studentData.tp4_score || 0;
+            scores.tp5 = studentData.tp5_score || 0;
+            scores.tp6 = studentData.tp6_score || 0;
+            updateDashboard();
+            updateBadges();
+        }
+    }
+};
+
+async function initSDK() {
+    const r = await window.dataSdk.init(dataHandler);
+    if (!r.isOk) console.error('SDK init failed');
+}
+initSDK();
+
+async function saveProgress() {
+    if (!studentData) return;
+    const total = Math.round((scores.tp1+scores.tp2+scores.tp3+scores.tp4+scores.tp5+scores.tp6)/6);
+    const updated = {...studentData, tp1_score:scores.tp1, tp2_score:scores.tp2, tp3_score:scores.tp3, tp4_score:scores.tp4, tp5_score:scores.tp5, tp6_score:scores.tp6, total_progress:total, last_activity:new Date().toISOString()};
+    await window.dataSdk.update(updated);
+}
+
+// ===== START APP =====
+function startApp() {
+    const name = document.getElementById('student-name-input').value.trim() || 'Siswa';
+    document.getElementById('welcome-screen').classList.add('hidden');
+    document.getElementById('main-app').classList.remove('hidden');
+    document.getElementById('student-display-name').textContent = name;
+    document.getElementById('dash-name').textContent = name;
+
+    if (!studentData) {
+        window.dataSdk.create({student_name:name, tp1_score:0, tp2_score:0, tp3_score:0, tp4_score:0, tp5_score:0, tp6_score:0, total_progress:0, last_activity:new Date().toISOString(), reflection_notes:''});
+    }
+    lucide.createIcons();
+    updateTP1Viz();
+    updateTP2Sim();
+    updateTP4Viz();
+    showTP5Op(0);
+    loadTP3Level(1);
+}
+
+// ===== NAVIGATION =====
+function navigate(page) {
+    document.querySelectorAll('[id^="page-"]').forEach(s => s.classList.add('hidden'));
+    const el = document.getElementById('page-'+page);
+    if (el) { el.classList.remove('hidden'); el.classList.add('fade-in'); }
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const navBtn = document.querySelector(`[data-nav="${page}"]`);
+    if (navBtn) navBtn.classList.add('active');
+    currentPage = page;
+    const titles = {dashboard:'Dashboard',tp1:'TP1: Bilangan Berpangkat',tp2:'TP2: Sifat Perpangkatan',tp3:'TP3: Operasi Perpangkatan',tp4:'TP4: Bentuk Akar',tp5:'TP5: Operasi Bentuk Akar',tp6:'TP6: Rasionalisasi',challenge:'Tantangan Akhir',remedial:'Remedial',enrichment:'Pengayaan',reflection:'Refleksi'};
+    document.getElementById('current-section-title').textContent = titles[page]||'';
+    if (page==='remedial') showRemedial();
+    closeSidebar();
+}
+
+function toggleSidebar() {
+    const sb = document.getElementById('sidebar');
+    const ov = document.getElementById('sidebar-overlay');
+    sb.classList.toggle('-translate-x-full');
+    ov.classList.toggle('hidden');
+}
+function closeSidebar() {
+    if (window.innerWidth < 1024) {
+        document.getElementById('sidebar').classList.add('-translate-x-full');
+        document.getElementById('sidebar-overlay').classList.add('hidden');
+    }
+}
+
+// ===== DASHBOARD =====
+function updateDashboard() {
+    for (let i=1;i<=6;i++) {
+        const el = document.getElementById('dash-tp'+i);
+        if (el) el.textContent = scores['tp'+i]+'%';
+    }
+    const total = Math.round((scores.tp1+scores.tp2+scores.tp3+scores.tp4+scores.tp5+scores.tp6)/6);
+    document.getElementById('dash-total').textContent = total+'%';
+    document.getElementById('dash-progress-bar').style.width = total+'%';
+}
+
+function updateBadges() {
+    for (let i=1;i<=6;i++) {
+        const badge = document.getElementById('tp'+i+'-badge');
+        if (badge) {
+            const s = scores['tp'+i];
+            badge.textContent = s+'%';
+            badge.className = 'score-badge ml-auto '+(s>=90?'bg-green-100 text-green-700':s>=70?'bg-blue-100 text-blue-700':'bg-gray-100 text-gray-500');
+        }
+    }
+}
+
+// ===== TP1: VISUALIZATION =====
+function updateTP1Viz() {
+    const base = parseInt(document.getElementById('tp1-base').value)||2;
+    const exp = parseInt(document.getElementById('tp1-exp').value)||0;
+    const superscript = String(exp).split('').map(d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[d]).join('');
+    document.getElementById('tp1-power-form').textContent = base+superscript;
+    if (exp===0) {
+        document.getElementById('tp1-expanded').textContent = '(apapun)⁰ = 1';
+        document.getElementById('tp1-result').textContent = '1';
+    } else {
+        const arr = Array(exp).fill(base);
+        document.getElementById('tp1-expanded').textContent = arr.join(' × ');
+        document.getElementById('tp1-result').textContent = Math.pow(base,exp).toLocaleString('id-ID');
+    }
+    drawTP1Canvas(base, exp);
+}
+
+function drawTP1Canvas(base, exp) {
+    const c = document.getElementById('tp1-canvas');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    const result = Math.pow(base, exp);
+    const maxBlocks = Math.min(result, 64);
+    const cols = Math.ceil(Math.sqrt(maxBlocks));
+    const rows = Math.ceil(maxBlocks/cols);
+    const size = Math.min(25, (c.width-40)/cols, (c.height-40)/rows);
+    const startX = (c.width - cols*size)/2;
+    const startY = (c.height - rows*size)/2;
+    for (let i=0;i<maxBlocks;i++) {
+        const col=i%cols, row=Math.floor(i/cols);
+        ctx.fillStyle = `hsl(${(i*15)%360}, 60%, 65%)`;
+        ctx.fillRect(startX+col*size+1, startY+row*size+1, size-2, size-2);
+        ctx.strokeStyle='#fff';
+        ctx.strokeRect(startX+col*size+1, startY+row*size+1, size-2, size-2);
+    }
+    if (result>64) {
+        ctx.fillStyle='#4338ca';
+        ctx.font='bold 14px DM Sans';
+        ctx.textAlign='center';
+        ctx.fillText(`Total: ${result} kotak`, c.width/2, c.height-10);
+    }
+}
+
+// ===== TP2: PROPERTIES =====
+const properties = [
+    {title:'Perkalian Bilangan Berpangkat',examples:['2² × 2³ = (2×2)(2×2×2) = 2⁵','3¹ × 3⁴ = 3×(3×3×3×3) = 3⁵'],rule:'aᵐ × aⁿ = aᵐ⁺ⁿ'},
+    {title:'Pembagian Bilangan Berpangkat',examples:['2⁵ ÷ 2² = (2×2×2×2×2)/(2×2) = 2³','5⁴ ÷ 5¹ = 5³'],rule:'aᵐ ÷ aⁿ = aᵐ⁻ⁿ'},
+    {title:'Pangkat dari Pangkat',examples:['(2³)² = 2³×2³ = 2⁶','(5²)³ = 5²×5²×5² = 5⁶'],rule:'(aᵐ)ⁿ = aᵐˣⁿ'},
+    {title:'Pangkat Nol',examples:['2³÷2³ = 2³⁻³ = 2⁰ = 1','5²÷5² = 5⁰ = 1'],rule:'a⁰ = 1 (a ≠ 0)'},
+    {title:'Pangkat Negatif',examples:['2⁻¹ = 1/2¹ = 1/2','3⁻² = 1/3² = 1/9'],rule:'a⁻ⁿ = 1/aⁿ'}
+];
+
+function showProperty(idx) {
+    for(let i=0;i<5;i++){
+        const b=document.getElementById('prop-btn-'+i);
+        b.className='px-3 py-1.5 rounded-full text-sm font-medium transition '+(i===idx?'bg-indigo-100 text-indigo-700':'bg-gray-100 text-gray-600 hover:bg-gray-200');
+    }
+    const p=properties[idx];
+    document.getElementById('property-display').innerHTML=`
+        <div class="text-center mb-3 text-sm text-gray-500">${p.title}</div>
+        <div class="space-y-2 text-center font-mono text-lg">${p.examples.map(e=>'<div>'+e+'</div>').join('')}</div>
+        <div class="mt-4 p-3 bg-indigo-50 rounded-lg text-center">
+            <strong class="text-indigo-800">Pola yang ditemukan:</strong>
+            <div class="text-xl font-bold text-indigo-700 mt-1">${p.rule}</div>
+        </div>`;
+}
+
+function updateTP2Sim() {
+    const a=parseInt(document.getElementById('tp2-base').value)||2;
+    const m=parseInt(document.getElementById('tp2-m').value)||0;
+    const n=parseInt(document.getElementById('tp2-n').value)||0;
+    const r=document.getElementById('tp2-sim-result');
+    r.innerHTML=`
+        <div class="space-y-2">
+            <div><strong>Perkalian:</strong> ${a}^${m} × ${a}^${n} = ${a}^${m+n} = ${Math.pow(a,m+n)}</div>
+            <div><strong>Pembagian:</strong> ${a}^${m} ÷ ${a}^${n} = ${a}^${m-n} = ${m>=n?Math.pow(a,m-n):'1/'+Math.pow(a,n-m)}</div>
+            <div><strong>Pangkat²:</strong> (${a}^${m})^${n} = ${a}^${m*n} = ${Math.pow(a,m*n)<=1e9?Math.pow(a,m*n).toLocaleString('id-ID'):'(sangat besar)'}</div>
+        </div>`;
+}
+
+// ===== TP3: LEVELED PRACTICE =====
+const tp3Problems = {
+    1:[{q:'Hitung: 3⁴',a:'81',hint:'3×3×3×3'},{q:'Hitung: 2⁵',a:'32',hint:'2×2×2×2×2'},{q:'Hitung: 10³',a:'1000',hint:'10×10×10'}],
+    2:[{q:'Sederhanakan: 2³ × 2⁴',a:'2^7 atau 128',accept:['128','2^7'],hint:'Gunakan sifat aᵐ×aⁿ=aᵐ⁺ⁿ'},{q:'Sederhanakan: 5⁶ ÷ 5²',a:'5^4 atau 625',accept:['625','5^4'],hint:'Gunakan sifat aᵐ÷aⁿ=aᵐ⁻ⁿ'}],
+    3:[{q:'Hitung: (2³)² × 2²',a:'256',accept:['256'],hint:'(2³)²=2⁶, lalu 2⁶×2²=2⁸'},{q:'Sederhanakan: 3⁵×3⁻²',a:'27',accept:['27','3^3'],hint:'3⁵⁻²=3³=27'}],
+    4:[{q:'Sebuah file berukuran 2⁸ KB. Berapa KB itu?',a:'256',accept:['256'],hint:'2⁸=256'},{q:'Bakteri berlipat 3 kali setiap jam. Setelah 4 jam dari 1 bakteri, berapa jumlahnya?',a:'81',accept:['81'],hint:'3⁴=81'}]
+};
+
+function loadTP3Level(lvl) {
+    for(let i=1;i<=4;i++) document.getElementById('tp3-lvl'+i).className='px-4 py-2 rounded-lg text-sm font-medium '+(i===lvl?'bg-green-100 text-green-700':'bg-gray-100 text-gray-600');
+    const area=document.getElementById('tp3-practice-area');
+    const probs=tp3Problems[lvl];
+    area.innerHTML=probs.map((p,i)=>`
+        <div class="p-4 bg-gray-50 rounded-lg">
+            <p class="font-medium mb-2">${p.q}</p>
+            <div class="flex gap-2 items-center flex-wrap">
+                <input type="text" id="tp3-ans-${lvl}-${i}" class="flex-1 min-w-[120px]" placeholder="Jawabanmu...">
+                <button onclick="checkTP3(${lvl},${i})" class="btn-primary text-sm">Periksa</button>
+                <button onclick="showHintTP3(${lvl},${i})" class="btn-secondary text-sm">Petunjuk</button>
+            </div>
+            <div id="tp3-fb-${lvl}-${i}" class="mt-2 text-sm hidden"></div>
+        </div>`).join('');
+}
+
+function checkTP3(lvl,idx) {
+    const ans=document.getElementById(`tp3-ans-${lvl}-${idx}`).value.trim().toLowerCase();
+    const prob=tp3Problems[lvl][idx];
+    const accepts=prob.accept||[prob.a.toLowerCase()];
+    const fb=document.getElementById(`tp3-fb-${lvl}-${idx}`);
+    fb.classList.remove('hidden');
+    if (accepts.some(a=>ans===a.toLowerCase())) {
+        fb.className='mt-2 text-sm correct-feedback p-2 rounded';
+        fb.textContent='✅ Benar! Hebat!';
+    } else {
+        fb.className='mt-2 text-sm wrong-feedback p-2 rounded';
+        fb.textContent='❌ Belum tepat. Coba lagi atau lihat petunjuk.';
+    }
+}
+
+function showHintTP3(lvl,idx) {
+    const fb=document.getElementById(`tp3-fb-${lvl}-${idx}`);
+    fb.classList.remove('hidden');
+    fb.className='mt-2 text-sm hint-box p-2 rounded';
+    fb.textContent='💡 Petunjuk: '+tp3Problems[lvl][idx].hint;
+}
+
+// ===== TP4: SQUARE ROOT VISUALIZATION =====
+function updateTP4Viz() {
+    const area=parseInt(document.getElementById('tp4-area').value)||1;
+    const side=Math.sqrt(area);
+    const isPerfect=Number.isInteger(side);
+    document.getElementById('tp4-result').textContent=isPerfect?`√${area} = ${side}`:`√${area} ≈ ${side.toFixed(3)}`;
+    drawTP4Canvas(area, side);
+}
+
+function drawTP4Canvas(area, side) {
+    const c=document.getElementById('tp4-canvas');
+    if(!c) return;
+    const ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    const maxSize=180;
+    const scale=maxSize/Math.max(side,1);
+    const drawSize=Math.min(side*scale, maxSize);
+    const x=(c.width-drawSize)/2, y=20;
+    // Draw square
+    ctx.fillStyle='#a7f3d0';
+    ctx.fillRect(x,y,drawSize,drawSize);
+    ctx.strokeStyle='#059669';
+    ctx.lineWidth=2;
+    ctx.strokeRect(x,y,drawSize,drawSize);
+    // Labels
+    ctx.fillStyle='#065f46';
+    ctx.font='bold 14px DM Sans';
+    ctx.textAlign='center';
+    ctx.fillText(`Luas = ${area}`, c.width/2, y+drawSize+25);
+    ctx.fillText(`Sisi = √${area}${Number.isInteger(side)?' = '+side:' ≈ '+side.toFixed(2)}`, c.width/2, y+drawSize+45);
+    // Side label
+    ctx.save();
+    ctx.translate(x-10, y+drawSize/2);
+    ctx.rotate(-Math.PI/2);
+    ctx.fillText(Number.isInteger(side)?String(side):side.toFixed(2), 0, 0);
+    ctx.restore();
+    // Grid lines for perfect squares
+    if (Number.isInteger(side) && side<=10) {
+        const cellSize=drawSize/side;
+        ctx.strokeStyle='#6ee7b7';
+        ctx.lineWidth=1;
+        for(let i=1;i<side;i++){
+            ctx.beginPath();ctx.moveTo(x+i*cellSize,y);ctx.lineTo(x+i*cellSize,y+drawSize);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(x,y+i*cellSize);ctx.lineTo(x+drawSize,y+i*cellSize);ctx.stroke();
+        }
+    }
+}
+
+// ===== TP5: OPERATIONS =====
+const tp5Ops = [
+    {title:'Penjumlahan Bentuk Akar',content:`<p class="mb-2">Hanya bentuk akar sejenis yang dapat dijumlahkan.</p><div class="space-y-1"><div>3√2 + 5√2 = (3+5)√2 = 8√2 ✓</div><div>2√3 + 4√5 → tidak bisa dijumlahkan (berbeda)</div><div>√8 + √18 = 2√2 + 3√2 = 5√2 ✓</div></div>`},
+    {title:'Pengurangan Bentuk Akar',content:`<p class="mb-2">Sama seperti penjumlahan, harus sejenis.</p><div class="space-y-1"><div>7√5 − 3√5 = 4√5</div><div>√50 − √8 = 5√2 − 2√2 = 3√2</div></div>`},
+    {title:'Perkalian Bentuk Akar',content:`<p class="mb-2">√a × √b = √(a×b)</p><div class="space-y-1"><div>√3 × √12 = √36 = 6</div><div>2√5 × 3√2 = 6√10</div></div>`},
+    {title:'Pembagian Bentuk Akar',content:`<p class="mb-2">√a ÷ √b = √(a/b)</p><div class="space-y-1"><div>√18 ÷ √2 = √9 = 3</div><div>6√15 ÷ 2√3 = 3√5</div></div>`}
+];
+
+function showTP5Op(idx) {
+    for(let i=0;i<4;i++) document.getElementById('tp5-op-'+i).className='px-3 py-1.5 rounded-full text-sm font-medium '+(i===idx?'bg-pink-100 text-pink-700':'bg-gray-100 text-gray-600');
+    const o=tp5Ops[idx];
+    document.getElementById('tp5-op-display').innerHTML=`<div class="text-center mb-2 text-sm text-gray-500 font-medium">${o.title}</div>${o.content}`;
+}
+
+function loadTP5Practice() {
+    const area=document.getElementById('tp5-practice-area');
+    const problems=[
+        {q:'Sederhanakan: √48',a:'4√3',hints:['48=16×3','√48=√16×√3','=4√3']},
+        {q:'Hitung: 3√2 + 5√2',a:'8√2',hints:['Bentuk akar sejenis','(3+5)√2','=8√2']},
+        {q:'Hitung: √5 × √20',a:'10',hints:['√5×√20=√(5×20)','=√100','=10']}
+    ];
+    area.innerHTML=problems.map((p,i)=>`
+        <div class="p-4 bg-gray-50 rounded-lg">
+            <p class="font-medium mb-2">${p.q}</p>
+            <div class="flex gap-2 items-center flex-wrap">
+                <input type="text" id="tp5-ans-${i}" class="flex-1 min-w-[120px]" placeholder="Jawabanmu...">
+                <button onclick="checkTP5(${i})" class="btn-primary text-sm">Periksa</button>
+            </div>
+            <div id="tp5-hints-${i}" class="mt-2 space-y-1"></div>
+            <button onclick="showTP5Hint(${i})" class="text-sm text-amber-600 font-medium mt-1">💡 Minta petunjuk</button>
+            <div id="tp5-fb-${i}" class="mt-2 text-sm hidden"></div>
+        </div>`).join('');
+    document.getElementById('tp5-practice-btn').textContent='Muat Ulang';
+    window._tp5Problems=problems;
+    window._tp5HintIdx=[0,0,0];
+}
+
+function checkTP5(idx) {
+    const ans=document.getElementById('tp5-ans-'+idx).value.trim().replace(/\s/g,'').toLowerCase();
+    const correct=window._tp5Problems[idx].a.replace(/\s/g,'').toLowerCase();
+    const fb=document.getElementById('tp5-fb-'+idx);
+    fb.classList.remove('hidden');
+    if(ans===correct){fb.className='mt-2 text-sm correct-feedback p-2 rounded';fb.textContent='✅ Benar!';}
+    else{fb.className='mt-2 text-sm wrong-feedback p-2 rounded';fb.textContent='❌ Belum tepat. Gunakan petunjuk!';}
+}
+
+function showTP5Hint(idx) {
+    const hints=window._tp5Problems[idx].hints;
+    const hIdx=window._tp5HintIdx[idx];
+    if(hIdx>=hints.length) return;
+    const container=document.getElementById('tp5-hints-'+idx);
+    const div=document.createElement('div');
+    div.className='hint-box p-2 rounded text-sm';
+    div.textContent='💡 '+ hints[hIdx];
+    container.appendChild(div);
+    window._tp5HintIdx[idx]++;
+}
+
+// ===== QUIZ SYSTEM =====
+const quizData = {
+    tp1:[
+        {q:'2⁵ = ?',options:['16','32','64','10'],correct:1},
+        {q:'Manakah bentuk berpangkat dari 7×7×7?',options:['7²','7³','3⁷','7+7+7'],correct:1},
+        {q:'10⁴ = ?',options:['40','400','1000','10000'],correct:3},
+        {q:'Basis dari 5³ adalah...',options:['3','5','15','8'],correct:1},
+        {q:'Eksponen dari 4⁶ adalah...',options:['4','6','24','4096'],correct:1}
+    ],
+    tp2:[
+        {q:'2³ × 2⁴ = ?',options:['2⁷','2¹²','4⁷','2¹'],correct:0},
+        {q:'5⁶ ÷ 5² = ?',options:['5³','5⁴','5⁸','1⁴'],correct:1},
+        {q:'(3²)³ = ?',options:['3⁵','3⁶','9³','3⁸'],correct:1},
+        {q:'7⁰ = ?',options:['0','7','1','70'],correct:2},
+        {q:'2⁻³ = ?',options:['−8','1/8','−6','8'],correct:1}
+    ],
+    tp3:[
+        {q:'Sederhanakan: 4²×4³÷4⁴',options:['4¹=4','4⁹','4⁵','4⁰=1'],correct:0},
+        {q:'File 2¹⁰ byte = ? byte',options:['100','512','1024','2048'],correct:2},
+        {q:'(2×3)² = ?',options:['12','36','10','6²'],correct:1},
+        {q:'3⁻¹ + 3⁻¹ = ?',options:['6⁻¹','2/3','3⁻²','1/9'],correct:1},
+        {q:'Jika bakteri berlipat 2 tiap jam, setelah 6 jam = ?',options:['12','32','64','128'],correct:2}
+    ],
+    tp4:[
+        {q:'√49 = ?',options:['6','7','8','49'],correct:1},
+        {q:'Sederhanakan √72',options:['6√2','8√2','3√8','36√2'],correct:0},
+        {q:'Manakah akar tidak sempurna?',options:['√16','√25','√10','√36'],correct:2},
+        {q:'√(a²) = ?',options:['a²','2a','a','a/2'],correct:2},
+        {q:'Sisi persegi dengan luas 144 cm² = ?',options:['12 cm','14 cm','72 cm','11 cm'],correct:0}
+    ],
+    tp5:[
+        {q:'3√5 + 2√5 = ?',options:['5√5','5√10','6√5','√25'],correct:0},
+        {q:'√3 × √12 = ?',options:['√15','6','36','4√3'],correct:1},
+        {q:'√50 − √18 = ?',options:['√32','2√2','4√2','3√2'],correct:1},
+        {q:'6√10 ÷ 2√5 = ?',options:['3√2','3√5','4√2','2√2'],correct:0},
+        {q:'(2√3)² = ?',options:['4√3','6','12','2√9'],correct:2}
+    ],
+    tp6:[
+        {q:'Rasionalisasi 1/√5 = ?',options:['√5/5','5/√5','1/5','√5'],correct:0},
+        {q:'Rasionalisasi 6/√3 = ?',options:['2√3','6√3/3','3√6','√3/6'],correct:0},
+        {q:'Sekawan dari (2+√3) adalah...',options:['2+√3','√3−2','2−√3','−2−√3'],correct:2},
+        {q:'Rasionalisasi 1/(√5−√2) = ?',options:['(√5+√2)/3','(√5−√2)/3','(√5+√2)/7','3/(√5+√2)'],correct:0},
+        {q:'4/√2 = ?',options:['2√2','4√2/2','√2','2√2/2'],correct:0}
+    ]
+};
+
+let currentQuiz={tp:'',idx:0,score:0,total:0};
+
+function startQuiz(tp) {
+    currentQuiz={tp,idx:0,score:0,total:quizData[tp].length};
+    showQuizQuestion(tp);
+    document.getElementById(tp+'-quiz-btn').classList.add('hidden');
+}
+
+function showQuizQuestion(tp) {
+    const area=document.getElementById(tp+'-quiz-area');
+    const q=quizData[tp][currentQuiz.idx];
+    if(!q){showQuizResult(tp);return;}
+    area.innerHTML=`
+        <div class="mb-3"><span class="text-sm text-gray-500">Soal ${currentQuiz.idx+1}/${currentQuiz.total}</span></div>
+        <p class="font-medium text-lg mb-4">${q.q}</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            ${q.options.map((o,i)=>`<button onclick="answerQuiz('${tp}',${i})" class="text-left p-3 rounded-lg border-2 border-gray-200 hover:border-indigo-400 hover:bg-indigo-50 transition font-medium">${o}</button>`).join('')}
+        </div>`;
+}
+
+function answerQuiz(tp, choice) {
+    const q=quizData[tp][currentQuiz.idx];
+    const area=document.getElementById(tp+'-quiz-area');
+    if(choice===q.correct){
+        currentQuiz.score++;
+        area.innerHTML+=`<div class="correct-feedback p-3 rounded-lg mt-3">✅ Benar! Hebat!</div>`;
+    } else {
+        area.innerHTML+=`<div class="wrong-feedback p-3 rounded-lg mt-3">❌ Jawabannya: ${q.options[q.correct]}</div>`;
+    }
+    currentQuiz.idx++;
+    setTimeout(()=>showQuizQuestion(tp), 1200);
+}
+
+function showQuizResult(tp) {
+    const pct=Math.round(currentQuiz.score/currentQuiz.total*100);
+    scores[tp]=Math.max(scores[tp],pct);
+    const area=document.getElementById(tp+'-quiz-area');
+    area.innerHTML=`
+        <div class="text-center p-6">
+            <div class="text-5xl mb-3">${pct>=90?'🏆':pct>=70?'👏':'💪'}</div>
+            <div class="text-2xl font-bold text-indigo-900">${pct}%</div>
+            <p class="text-gray-600 mt-2">Kamu menjawab benar ${currentQuiz.score} dari ${currentQuiz.total} soal.</p>
+            <p class="text-sm mt-2 ${pct>=70?'text-green-600':'text-amber-600'}">${pct>=90?'Luar biasa! Kamu menguasai materi ini!':pct>=70?'Bagus! Kamu sudah memahami konsep ini.':'Terus berlatih! Coba lihat kembali materinya.'}</p>
+            <button onclick="startQuiz('${tp}')" class="btn-secondary mt-4 text-sm">Coba Lagi</button>
+        </div>`;
+    document.getElementById(tp+'-quiz-btn').classList.remove('hidden');
+    document.getElementById(tp+'-quiz-btn').textContent='Ulangi Kuis';
+    saveProgress();
+    updateDashboard();
+    updateBadges();
+}
+
+// ===== STEP REVEAL =====
+function showNextStep(containerId) {
+    const container=document.getElementById(containerId);
+    const hidden=container.querySelector('[data-step].hidden');
+    if(hidden) hidden.classList.remove('hidden');
+}
+
+// ===== CHALLENGE =====
+function startChallenge() {
+    const area=document.getElementById('challenge-area');
+    const problems=[
+        {q:'Sederhanakan: (2³ × √8) ÷ 2²',a:'2√2',hint:'2³=8, √8=2√2, jadi 8×2√2÷4 = 4√2... cek lagi: 2³×√8÷2² = 8×2√2/4 = 4√2'},
+        {q:'Rasionalisasi dan sederhanakan: 12/(√3 × 2²)',a:'√3',hint:'12/(4√3) = 3/√3 = 3√3/3 = √3'},
+        {q:'Jika luas persegi = 2⁶ cm², berapa kelilingnya?',a:'32 cm',hint:'Sisi=√64=8, Keliling=4×8=32'}
+    ];
+    area.innerHTML=problems.map((p,i)=>`
+        <div class="p-5 bg-white rounded-xl shadow-sm border border-yellow-100">
+            <p class="font-medium text-lg mb-3">🏆 Soal ${i+1}: ${p.q}</p>
+            <div class="flex gap-2 flex-wrap">
+                <input type="text" id="ch-ans-${i}" class="flex-1 min-w-[140px]" placeholder="Jawabanmu...">
+                <button onclick="checkChallenge(${i})" class="btn-primary text-sm">Periksa</button>
+            </div>
+            <div id="ch-fb-${i}" class="mt-2 text-sm hidden"></div>
+            <button onclick="document.getElementById('ch-fb-${i}').classList.remove('hidden');document.getElementById('ch-fb-${i}').className='mt-2 text-sm hint-box p-2 rounded';document.getElementById('ch-fb-${i}').textContent='💡 '+decodeURIComponent('${encodeURIComponent(p.hint)}')" class="text-xs text-amber-600 mt-2">Petunjuk</button>
+        </div>`).join('');
+    document.getElementById('challenge-btn').textContent='Muat Ulang Tantangan';
+    window._chProblems=problems;
+}
+
+function checkChallenge(idx) {
+    const ans=document.getElementById('ch-ans-'+idx).value.trim().replace(/\s/g,'').toLowerCase();
+    const correct=window._chProblems[idx].a.replace(/\s/g,'').toLowerCase();
+    const fb=document.getElementById('ch-fb-'+idx);
+    fb.classList.remove('hidden');
+    if(ans===correct){fb.className='mt-2 text-sm correct-feedback p-2 rounded';fb.textContent='✅ Luar biasa!';}
+    else{fb.className='mt-2 text-sm wrong-feedback p-2 rounded';fb.textContent='❌ Belum tepat. Jawaban: '+window._chProblems[idx].a;}
+}
+
+// ===== REMEDIAL =====
+function showRemedial() {
+    const area=document.getElementById('remedial-area');
+    const weak=[];
+    for(let i=1;i<=6;i++) if(scores['tp'+i]<70) weak.push(i);
+    if(weak.length===0){
+        area.innerHTML='<div class="p-6 bg-green-50 rounded-xl text-center"><div class="text-4xl mb-2">🎉</div><p class="font-medium text-green-800">Selamat! Semua skor kamu sudah di atas 70%. Coba Pengayaan!</p></div>';
+    } else {
+        area.innerHTML='<p class="text-gray-600 mb-4">Kamu perlu memperkuat pemahaman pada:</p>'+weak.map(i=>`
+            <button onclick="navigate('tp${i}')" class="w-full text-left p-4 bg-amber-50 rounded-lg border border-amber-200 hover:bg-amber-100 transition mb-2">
+                <span class="font-bold text-amber-800">TP ${i}</span> — Skor: ${scores['tp'+i]}% → <span class="text-amber-600">Pelajari Ulang</span>
+            </button>`).join('');
+    }
+}
+
+// ===== ENRICHMENT =====
+function checkEnrichment(idx) {
+    const ans=document.getElementById('enrich-ans-'+idx).value.trim();
+    const fb=document.getElementById('enrich-fb-'+idx);
+    fb.classList.remove('hidden');
+    // 2^6=64, 3^4=81, 64×81/36 = 5184/36 = 144
+    if(ans==='144'){fb.className='mt-2 text-sm correct-feedback p-2 rounded';fb.textContent='✅ Benar! 2⁶×3⁴÷6² = 64×81÷36 = 144';}
+    else{fb.className='mt-2 text-sm wrong-feedback p-2 rounded';fb.textContent='❌ Petunjuk: 2ⁿ=64→n=6, 3ᵐ=81→m=4, hitung 64×81÷36';}
+}
+
+// ===== REFLECTION =====
+async function saveReflection() {
+    if(!studentData) return;
+    const btn=document.getElementById('save-reflection-btn');
+    btn.disabled=true; btn.textContent='Menyimpan...';
+    const notes=[document.getElementById('reflect-1').value, document.getElementById('reflect-2').value, document.getElementById('reflect-3').value].join(' | ');
+    const updated={...studentData, reflection_notes:notes, last_activity:new Date().toISOString()};
+    const r=await window.dataSdk.update(updated);
+    btn.disabled=false; btn.textContent='Simpan Refleksi 💾';
+    const fb=document.getElementById('reflect-feedback');
+    fb.classList.remove('hidden');
+    fb.textContent=r.isOk?'Refleksi tersimpan! ✓':'Gagal menyimpan. Coba lagi.';
+    fb.className='text-sm mt-2 '+(r.isOk?'text-green-600':'text-red-600');
+}
+
+// Init visuals on load
+document.addEventListener('DOMContentLoaded', ()=>{ lucide.createIcons(); });
+</script>
+ </body>
+</html>
